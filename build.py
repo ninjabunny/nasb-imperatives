@@ -147,13 +147,14 @@ main{zoom:var(--z,1)}
 .v{position:relative}
 .cb{position:absolute;top:8px;right:10px;display:flex;align-items:center;justify-content:center;width:30px;height:28px;padding:0;border-radius:6px;border:1px solid var(--line);background:var(--chip);color:var(--mut);cursor:pointer;opacity:.75}
 .cb:hover{opacity:1;color:var(--acc);border-color:var(--acc)}
+select{font:14px system-ui;height:36px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);max-width:160px;cursor:pointer}select:focus{outline:2px solid var(--acc);outline-offset:1px}.bar{flex-wrap:wrap}
 #ca[hidden]{display:none}h2 #ca{order:2;margin:0;font-weight:400;align-self:center}#fd{margin-left:auto}
 #th{flex:none;font:15px system-ui;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}
 body{margin:0;background:var(--bg);color:var(--fg);font:18px/1.65 Georgia,'Iowan Old Style',serif;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 20px}
 .hin{max-width:820px;margin:0 auto}
-h1{font-size:20px;margin:0;letter-spacing:-.01em}
+h1{font-size:20px;margin:0;letter-spacing:-.01em}.brand{display:flex;align-items:center;gap:12px;margin-bottom:8px}.brand img{border-radius:12px;flex:none}.brand .sub{margin:2px 0 0}
 .sub{font:13px system-ui;color:var(--mut);margin:2px 0 8px}
 .bar{display:flex;align-items:center;gap:10px;margin-top:4px}
 #n{font:12px system-ui;color:var(--mut)}
@@ -172,9 +173,9 @@ mark{background:var(--mk);color:var(--mkfg);padding:0 3px;border-radius:4px;font
 #top{position:fixed;right:18px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 @media(max-width:600px){body{font-size:17px}h2{font-size:22px}header{padding:10px 14px}main{padding:0 14px 80px}}
 """
-page=f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Imperatives in the New Testament (NASB)</title>
+page=f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Imperatives in the New Testament (NASB)</title><link rel="icon" href="logo.svg" type="image/svg+xml">
 <style>{CSS}</style>
-<header><div class="hin"><h1>Imperatives in the New Testament — NASB</h1><div class="sub">{len(out)} verses · {sum(len(o["marks"]) for o in out)} imperative verbs</div><div class="bar"><select id="sb" aria-label="Book"></select><button id="cp" class="ar" aria-label="Previous chapter">‹</button><select id="sc" aria-label="Chapter"></select><button id="cn" class="ar" aria-label="Next chapter">›</button><span id="n"></span><button id="fd" class="ar" aria-label="Decrease font size" title="Smaller text" style="font-size:13px">A</button><button id="fu" class="ar" aria-label="Increase font size" title="Larger text" style="font-size:18px">A</button><button id="th" title="Toggle light/dark" aria-label="Toggle theme"></button></div></div></header>
+<header><div class="hin"><div class="brand"><img src="logo.svg" alt="" width="52" height="52"><div><h1>Imperatives in the New Testament — NASB</h1><div class="sub">{len(out)} verses · {sum(len(o["marks"]) for o in out)} imperative verbs</div></div></div><div class="bar"><select id="sb" aria-label="Book"></select><button id="cp" class="ar" aria-label="Previous chapter">‹</button><select id="sc" aria-label="Chapter"></select><button id="cn" class="ar" aria-label="Next chapter">›</button><span id="n"></span><button id="fd" class="ar" aria-label="Decrease font size" title="Smaller text" style="font-size:13px">A</button><button id="fu" class="ar" aria-label="Increase font size" title="Larger text" style="font-size:18px">A</button><button id="th" title="Toggle light/dark" aria-label="Toggle theme"></button></div></div></header>
 <main><button id="ca" class="ar" style="width:auto;padding:0 12px;font:13px system-ui" hidden>Copy all</button>{''.join(body)}</main><button id="top" title="Back to top" onclick="scrollTo(0,0)">↑</button>
 <script>const R=document.documentElement,dm=matchMedia('(prefers-color-scheme:dark)');let T=null;try{{T=localStorage.theme}}catch(e){{}}if(T)R.dataset.theme=T;const dk=()=>R.dataset.theme?R.dataset.theme=='dark':dm.matches,sync=()=>th.textContent=dk()?'☀️':'🌙';sync();th.onclick=()=>{{const t=dk()?'light':'dark';R.dataset.theme=t;try{{localStorage.theme=t}}catch(e){{}}sync()}};dm.onchange=sync;const CP='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>',CK='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
 const esc=x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
